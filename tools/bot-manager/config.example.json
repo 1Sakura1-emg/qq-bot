@@ -1,0 +1,38 @@
+{
+  "host": "YOUR_SERVER_IP",
+  "user": "root",
+  "key_path": "C:/Users/YOUR_USER/.ssh/qq-bot.pem",
+  "ssh_path": "C:/Windows/System32/OpenSSH/ssh.exe",
+  "panel_port": 18766,
+  "cloud_recovery": {
+    "enabled": false,
+    "instance_id": "YOUR_ECS_INSTANCE_ID",
+    "region_id": "cn-hangzhou"
+  },
+  "tunnel": {
+    "reconnect_seconds": 10,
+    "connect_timeout_seconds": 12,
+    "server_alive_interval_seconds": 15,
+    "server_alive_count_max": 2,
+    "startup_timeout_seconds": 40,
+    "telemetry_timeout_seconds": 35
+  },
+  "known_bot": {
+    "account_id": "10000"
+  },
+  "services": {
+    "astrbot": {
+      "local_port": 16185,
+      "remote_port": 6185
+    },
+    "snowluma": {
+      "local_port": 5099,
+      "remote_port": 5099
+    },
+    "novnc": {
+      "local_port": 6081,
+      "remote_port": 6081,
+      "path": "/vnc.html?autoconnect=1&resize=scale"
+    }
+  }
+}

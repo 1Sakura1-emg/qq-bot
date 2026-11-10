@@ -1,0 +1,10 @@
+{
+  "enabled": {"type":"bool","description":"启用空间自动互动","default":false},
+  "platform_id": {"type":"string","description":"龙娘小号连接","default":"qq-snowluma"},
+  "account_id": {"type":"string","description":"龙娘 QQ 号","default":"10000"},
+  "provider_id": {"type":"string","description":"写评论使用的模型","default":"deepseek-dragon/deepseek-flash","_special":"select_provider"},
+  "public_daily_limit": {"type":"int","description":"每天最多主动评论空友爱看动态数","default":5},
+  "own_reply_daily_limit": {"type":"int","description":"每天最多回复自己说说下的新评论数","default":20},
+  "poll_seconds": {"type":"int","description":"检查新评论的间隔秒数","default":180},
+  "public_interval_minutes": {"type":"int","description":"主动评论之间的最小间隔分钟数","default":120}
+}

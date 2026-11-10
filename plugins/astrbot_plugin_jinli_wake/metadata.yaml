@@ -1,0 +1,8 @@
+name: astrbot_plugin_jinli_wake
+display_name: 烬璃关键词唤醒
+desc: 群消息包含“龙娘”时唤醒，随后六十秒内仅对同群同一个人的续聊回应。
+version: v1.1.0
+author: local
+support_platforms:
+  - aiocqhttp
+astrbot_version: ">=4.29.3"

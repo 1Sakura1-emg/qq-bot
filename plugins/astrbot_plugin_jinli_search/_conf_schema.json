@@ -1,0 +1,5 @@
+{
+  "enabled": {"description": "启用按需搜索规则", "type": "bool", "default": false},
+  "platform_id": {"description": "龙娘的小号连接", "type": "string", "default": "jinli-personal"},
+  "account_id": {"description": "龙娘的 QQ 号码", "type": "string", "default": "10000"}
+}

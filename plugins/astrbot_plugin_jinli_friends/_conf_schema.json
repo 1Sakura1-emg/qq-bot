@@ -1,0 +1,18 @@
+{
+  "enabled": {
+    "description": "自动通过好友申请",
+    "hint": "开启后，自动通过下面指定小号收到的所有好友申请。",
+    "type": "bool",
+    "default": false
+  },
+  "platform_id": {
+    "description": "龙娘的小号连接",
+    "type": "string",
+    "default": "jinli-personal"
+  },
+  "account_id": {
+    "description": "龙娘的 QQ 号码",
+    "type": "string",
+    "default": "10000"
+  }
+}

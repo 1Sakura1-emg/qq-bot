@@ -1,0 +1,8 @@
+name: astrbot_plugin_jinli_media
+display_name: 烬璃语音识别
+desc: 使用 QQ 的语音转文字能力，让烬璃理解收到的语音和引用语音。
+version: v1.0.0
+author: local
+support_platforms:
+  - aiocqhttp
+astrbot_version: ">=4.29.3"

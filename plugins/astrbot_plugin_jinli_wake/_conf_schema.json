@@ -1,0 +1,7 @@
+{
+  "enabled": {"type": "bool", "description": "启用群聊关键词唤醒", "default": true},
+  "platform_id": {"type": "string", "description": "普通 QQ 连接 ID", "default": "qq-snowluma"},
+  "account_id": {"type": "string", "description": "龙娘 QQ 账号", "default": "10000"},
+  "keyword": {"type": "string", "description": "群消息正文中的唤醒词", "default": "龙娘"},
+  "followup_seconds": {"type": "int", "description": "叫名字后同群同一发言人的续聊秒数；普通续聊不延长窗口，0为关闭续聊", "default": 60}
+}

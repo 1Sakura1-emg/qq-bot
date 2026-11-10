@@ -1,0 +1,33 @@
+{
+  "enabled": {
+    "description": "每天自动发空间动态",
+    "type": "bool",
+    "default": false
+  },
+  "daily_time": {
+    "description": "每天发布时间（北京时间，24 小时制）",
+    "type": "string",
+    "default": "19:45"
+  },
+  "post_prompt": {
+    "description": "空间动态的内容要求",
+    "type": "text",
+    "default": "保持烬璃的人格，以第一人称写一条轻松自然的日常碎碎念，50到140字，稍微傲娇但温柔，适量龙娘元素。只写正文，不加标题、引号和解释，不引用私人聊天，不声称有真实身体或实际出门。"
+  },
+  "platform_id": {
+    "description": "龙娘的小号连接",
+    "type": "string",
+    "default": "jinli-personal"
+  },
+  "account_id": {
+    "description": "龙娘的 QQ 号码",
+    "type": "string",
+    "default": "10000"
+  },
+  "provider_id": {
+    "description": "写动态使用的模型",
+    "type": "string",
+    "default": "deepseek-dragon/deepseek-flash",
+    "_special": "select_provider"
+  }
+}

@@ -1,0 +1,8 @@
+name: astrbot_plugin_jinli_qzone_social
+display_name: 烬璃空间互动
+desc: 回复自己说说下的新评论，并限量评论空友爱看动态。
+version: v1.0.0
+author: local
+support_platforms:
+  - aiocqhttp
+astrbot_version: ">=4.29.3"

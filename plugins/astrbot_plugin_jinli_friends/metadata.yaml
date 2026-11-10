@@ -1,0 +1,8 @@
+name: astrbot_plugin_jinli_friends
+display_name: 烬璃好友申请
+desc: 自动通过龙娘小号收到的好友申请，可在插件配置中关闭。
+version: v1.0.0
+author: local
+support_platforms:
+  - aiocqhttp
+astrbot_version: ">=4.29.3"

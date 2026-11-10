@@ -1,0 +1,8 @@
+name: astrbot_plugin_jinli_poke
+display_name: 烬璃戳一戳
+desc: 被戳时使用烬璃的人格回应，支持群聊和私聊，同一会话间隔十五秒。
+version: v1.0.0
+author: local
+support_platforms:
+  - aiocqhttp
+astrbot_version: ">=4.29.3"

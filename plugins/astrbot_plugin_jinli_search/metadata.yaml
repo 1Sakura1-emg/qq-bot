@@ -1,0 +1,8 @@
+name: astrbot_plugin_jinli_search
+display_name: 烬璃联网查资料
+desc: 按需搜索公开的人物、歌曲和网络资料，保留来源并限定为搜索工具。
+version: v1.0.0
+author: local
+support_platforms:
+  - aiocqhttp
+astrbot_version: ">=4.29.3"

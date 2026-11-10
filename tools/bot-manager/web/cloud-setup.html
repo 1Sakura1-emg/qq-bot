@@ -1,0 +1,15 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>自动恢复配置指南 · Bot 控制台</title><link rel="stylesheet" href="/styles.css"><link rel="icon" href="/favicon.svg"><script src="/setup.js" defer></script></head><body class="setup-page"><article class="setup-guide"><a class="setup-back" href="/">← 返回管理面板</a><div class="eyebrow">ONE-TIME SETUP</div><h1>配置阿里云自动恢复<span>。</span></h1><p class="setup-lead">只需配置一次。现有 SSH 私钥不能重启云实例，因此需要一个具有指定权限的 RAM AccessKey。</p><section class="panel setup-step"><h2>01 · 准备 RAM 访问密钥</h2><p>打开<a href="https://ram.console.aliyun.com/" target="_blank" rel="noopener noreferrer">阿里云 RAM 控制台 ↗</a>，用主账号或 RAM 管理员登录。按下面的顺序操作：<ol><li>进入「身份管理 → 用户 → 创建用户」，登录名称填 <code>qqbot-recovery</code>。</li><li>选择「使用永久 AccessKey 访问」（部分界面叫「OpenAPI 调用访问」），无需勾选控制台访问，完成创建。</li><li>如果没有自动生成密钥，打开该用户的「凭证管理 → AccessKey → 创建 AccessKey」，按提示完成安全验证。</li><li>保存 AccessKey ID 和 AccessKey Secret；Secret 只在创建时显示一次。</li></ol></p><p>保管好 AccessKey ID 和 AccessKey Secret，稍后只在本机面板填写，无需发送到聊天里。已有合适的 RAM AccessKey 可以直接使用。</p></section><section class="panel setup-step"><h2>02 · 授予指定实例的恢复权限</h2><p>该策略允许查看实例信息，重启权限仅限这台实例。<ol><li>点击下方「复制权限策略」。</li><li>在 RAM 中进入「权限管理 → 权限策略 → 创建权限策略 → 脚本编辑」，粘贴 JSON，名称填 <code>QQBotRecovery</code>，保存。</li><li>回到「身份管理 → 用户」，找到 <code>qqbot-recovery</code>，点击「添加权限」。授权范围选「整个云账号」，在「自定义策略」中搜索并勾选 <code>QQBotRecovery</code>，确认授权。实际可重启的实例仍由策略中的实例 ID 限定。</li></ol></p><div class="setup-policy-heading"><span>杭州 · i-bp1felfjj0fnzqi17svw</span><button class="button" id="copyPolicy">复制权限策略</button></div><pre id="policyText">{
+  "Version": "1",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": ["ecs:DescribeInstances"],
+      "Resource": ["*"]
+    },
+    {
+      "Effect": "Allow",
+      "Action": ["ecs:RebootInstance"],
+      "Resource": ["acs:ecs:cn-hangzhou:1508793157521804:instance/i-bp1felfjj0fnzqi17svw"]
+    }
+  ]
+}</pre></section><section class="panel setup-step"><h2>03 · 回到本机面板完成校验</h2><p>在<a href="/">管理面板</a>的「阿里云自动恢复」区域点击「配置阿里云权限」，填写 AccessKey ID 与 AccessKey Secret，再点「保存并校验权限」。</p><p>程序会核对服务器身份，并做一次不会执行重启的权限预检。通过后，密钥由 Windows 账号加密保存在本机，自动恢复随即开启。看到状态变为「监测中」即配置完成。</p><div class="setup-rule">连续故障 5 分钟且重连失败至少 5 次 → 云端与 SSH 双重检查 → 普通重启。每小时最多一次，24 小时最多两次。</div></section><p class="setup-bottom">关闭启动窗口会停止后续自动恢复。已发送的云端重启请求无法撤销。<br><a href="https://help.aliyun.com/zh/ecs/developer-reference/api-ecs-2014-05-26-rebootinstance" target="_blank" rel="noopener noreferrer">阿里云重启接口说明 ↗</a></p></article><div id="setupToast" class="setup-toast hidden" role="status">策略已复制</div></body></html>

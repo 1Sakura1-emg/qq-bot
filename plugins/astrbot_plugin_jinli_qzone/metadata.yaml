@@ -1,0 +1,8 @@
+name: astrbot_plugin_jinli_qzone
+display_name: 烬璃每日空间动态
+desc: 每天指定时间以烬璃人格生成并发布一条纯文字说说，限定龙娘小号。
+version: v1.0.0
+author: local
+support_platforms:
+  - aiocqhttp
+astrbot_version: ">=4.29.3"

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="panel-token" content="__PANEL_TOKEN__">
+  <title>Bot 控制台 · 阿里云</title>
+  <link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+<aside class="sidebar">
+  <a class="brand" href="#overview"><span class="brand-icon">b<span>·</span></span><span>Bot 控制台<small>PERSONAL WORKSPACE</small></span></a>
+  <div class="nav-label">工作空间</div>
+  <nav aria-label="主导航">
+    <a class="nav-item active" href="#overview"><span>◫</span>运行总览</a>
+    <a class="nav-item" href="#apps"><span>▦</span>应用入口</a>
+    <a class="nav-item" href="#robot"><span>◇</span>我的机器人</a>
+    <a class="nav-item" href="#logs"><span>≡</span>运行日志</a>
+  </nav>
+  <div class="sidebar-server"><span class="tiny-label">当前服务器</span><strong>Aliyun ECS <span class="small-tag">云端</span></strong><code id="sidebarIp">YOUR_SERVER_IP</code><div class="sidebar-line"><i class="dot" id="sideDot"></i><span id="sideState">正在建立连接</span></div></div>
+  <div class="sidebar-foot"><span class="lock-icon">▣</span><div>仅本机访问<small>通过 SSH 加密连接</small></div></div>
+</aside>
+<main>
+  <header class="topbar"><div class="breadcrumb">工作空间 <span>/</span> <strong>运行总览</strong></div><div class="topbar-right"><span class="local-tag">LOCAL</span><time id="clock">--:--:--</time><span class="avatar">J</span></div></header>
+  <div class="content">
+    <section class="page-heading" id="overview"><div><div class="eyebrow">YOUR BOTS, ONE PLACE</div><h1>一切运行，尽在掌握<span>。</span></h1><p>管理你的机器人，查看服务器与应用的实时状态。</p></div><div class="heading-actions"><button class="button" id="reconnectBtn"><span>↻</span>重新连接</button><button class="button exit-button" id="exitBtn">断开并退出 <span>↗</span></button></div></section>
+    <div class="connection-bar" id="connectionBar" role="status"><div><i class="dot" id="connectionDot"></i><strong id="connectionText">正在连接服务器</strong><span class="connection-detail" id="connectionDetail">正在建立 SSH 隧道并读取运行数据…</span></div><span id="lastUpdate">等待首次更新</span></div>
+    <div class="error-banner hidden" id="errorBanner"></div>
+
+    <section class="metrics" aria-label="服务器资源">
+      <article class="metric"><div class="metric-top"><span>CPU 使用率</span><span class="metric-icon">⌁</span></div><div class="metric-number"><strong id="cpuValue">—</strong><small>%</small></div><svg class="sparkline" viewBox="0 0 180 34" aria-label="CPU 最近五分钟变化"><polyline id="cpuSpark" points=""/></svg><div class="metric-bottom"><span id="cpuCores">等待服务器数据</span><span id="loadValue">负载 —</span></div></article>
+      <article class="metric"><div class="metric-top"><span>内存占用</span><span class="metric-icon">▤</span></div><div class="metric-number"><strong id="memoryValue">—</strong><small id="memoryTotal">/ — GB</small></div><progress id="memoryBar" max="100" value="0" aria-label="内存占用率"></progress><div class="metric-bottom"><span id="memoryPercent">使用率 —</span><span id="swapValue">交换空间 —</span></div></article>
+      <article class="metric"><div class="metric-top"><span>磁盘使用</span><span class="metric-icon">▱</span></div><div class="metric-number"><strong id="diskValue">—</strong><small id="diskTotal">/ — GB</small></div><progress id="diskBar" max="100" value="0" aria-label="磁盘占用率"></progress><div class="metric-bottom"><span id="diskPercent">使用率 —</span><span id="diskFree">可用 —</span></div></article>
+      <article class="metric"><div class="metric-top"><span>服务器运行时间</span><span class="metric-icon">◷</span></div><div class="metric-number uptime-number"><strong id="uptimeValue">—</strong></div><div class="network-rates"><span>↓ <b id="networkRx">—</b></span><span>↑ <b id="networkTx">—</b></span></div><div class="metric-bottom"><span>实时网络速率</span><span id="onlineServices">服务 — / 2</span></div></article>
+    </section>
+
+    <section class="panel recovery-panel" id="cloudRecoveryPanel"><div class="panel-heading"><div class="logs-title"><h2>阿里云自动恢复</h2><span class="badge" id="cloudRecoveryBadge">读取中</span></div><button class="text-button" id="cloudConfigure">配置阿里云权限</button></div><div class="recovery-body"><div><p class="recovery-message" id="cloudRecoveryMessage">正在读取恢复配置…</p><p class="recovery-rule">连续异常 5 分钟且重连失败至少 5 次，复核云端状态后执行普通重启。每小时最多一次，24 小时最多两次。</p><p class="recovery-target">目标：杭州 · <code>i-bp1felfjj0fnzqi17svw</code><span id="cloudRecoveryCount"> · 24 小时内已重启 0 次</span></p></div><div class="recovery-actions"><button class="button" id="cloudValidate">验证权限</button><button class="button" id="cloudToggle" disabled>暂停自动重启</button></div></div></section>
+
+    <section id="apps"><div class="section-heading"><h2>应用入口 <span>03</span></h2><span class="section-note">通过本地隧道安全访问</span></div><div class="apps-grid">
+      <article class="app-card"><div class="app-card-top"><div class="app-logo astr-logo">A<span>✦</span></div><span class="badge" id="astrbotBadge">检测中</span></div><h3>AstrBot</h3><p>机器人配置、模型服务与插件管理</p><div class="app-meta"><span id="astrbotVersion">版本 —</span><span id="astrbotMemory">内存 —</span></div><a class="app-link disabled" data-app="astrbot" target="_blank" rel="noopener noreferrer">打开管理面板 <span>↗</span></a></article>
+      <article class="app-card"><div class="app-card-top"><div class="app-logo snow-logo">❄</div><span class="badge" id="snowlumaBadge">检测中</span></div><h3>SnowLuma</h3><p>QQ 连接、协议设置与账号管理</p><div class="app-meta"><span id="snowlumaVersion">版本 —</span><span id="snowlumaMemory">内存 —</span></div><a class="app-link disabled" data-app="snowluma" target="_blank" rel="noopener noreferrer">打开管理面板 <span>↗</span></a></article>
+      <article class="app-card"><div class="app-card-top"><div class="app-logo qq-logo"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="8" width="26" height="20" rx="4"/><path d="M15 33h10M20 28v5M13 14h5v5h-5zM23 14h4v4h-4zM23 21h4M13 23h5"/></svg></div><span class="badge" id="novncBadge">检测中</span></div><h3>QQ 登录桌面</h3><p>通过 noVNC 扫码登录与处理账号验证</p><div class="app-meta"><span>浏览器远程桌面</span><span id="qqLoginLabel">等待连接</span></div><a class="app-link disabled" data-app="novnc" target="_blank" rel="noopener noreferrer">打开 QQ 桌面 <span>↗</span></a></article>
+    </div></section>
+
+    <div class="detail-grid">
+      <section class="panel robot-panel" id="robot"><div class="panel-heading"><h2>我的机器人</h2><span class="badge" id="botBadge">检测中</span></div><div class="robot-main"><div class="robot-avatar"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="15" width="28" height="24" rx="8"/><path d="M24 15V9M7 24v7M41 24v7M19 32h10"/><circle cx="24" cy="7" r="2"/><circle cx="18" cy="24" r="1.5"/><circle cx="30" cy="24" r="1.5"/></svg><i id="botAvatarDot" class="dot"></i></div><div><h3 id="botTitle">QQ 机器人</h3><p id="botAccount">正在读取账号信息…</p></div><span class="protocol-pill">OneBot v11</span></div><dl class="info-list"><div><dt>连接链路</dt><dd class="chain"><span>QQ</span><b>→</b><span>SnowLuma</span><b>→</b><span>AstrBot</span></dd></div><div><dt>当前连接</dt><dd id="botConnection">等待检测</dd></div><div><dt>模型服务</dt><dd id="modelStatus">等待读取</dd></div><div><dt>服务运行时长</dt><dd id="botUptime">—</dd></div></dl><div class="panel-footer"><span class="note-dot"></span><span id="botNote">连接状态根据服务器当前的协议连接实时检测。</span></div></section>
+      <section class="panel server-panel"><div class="panel-heading"><h2>服务器信息</h2><span class="outline-label">ALIYUN ECS</span></div><dl class="info-list server-info"><div><dt>公网地址</dt><dd><code>YOUR_SERVER_IP</code><button id="copyIp" class="copy-button" title="复制服务器 IP" aria-label="复制服务器 IP">⧉</button></dd></div><div><dt>主机名称</dt><dd id="hostname">—</dd></div><div><dt>操作系统</dt><dd id="osVersion">—</dd></div><div><dt>处理器架构</dt><dd id="architecture">—</dd></div><div><dt>服务器时间</dt><dd id="serverTime">—</dd></div><div><dt>连接方式</dt><dd>SSH 密钥认证 <span class="inline-muted">· 加密隧道</span></dd></div></dl><div class="panel-footer"><span class="note-dot"></span><span>关闭启动窗口只会断开本机连接，云端服务继续运行。</span></div></section>
+    </div>
+
+    <section class="panel logs-panel" id="logs"><div class="panel-heading"><div class="logs-title"><h2>运行日志</h2><span class="live-label" id="logLive"><i class="dot"></i>实时</span></div><div class="log-tools"><button class="text-button" id="pauseLogs">Ⅱ 暂停</button><button class="text-button" id="exportLogs">↓ 导出</button></div></div><div class="log-filter"><div class="tabs" role="group" aria-label="日志来源"><button class="tab active" data-log-service="all">全部服务</button><button class="tab" data-log-service="astrbot">AstrBot</button><button class="tab" data-log-service="snowluma">SnowLuma</button></div><div class="log-filter-right"><select id="levelFilter" aria-label="日志级别"><option value="all">所有级别</option><option value="error">错误</option><option value="warn">警告</option><option value="info">信息</option></select><label class="search"><span>⌕</span><input id="logSearch" placeholder="搜索日志内容" aria-label="搜索日志内容"></label></div></div><div class="log-console" id="logConsole" tabindex="0" aria-label="机器人运行日志"><div class="log-empty">正在等待服务器日志…</div></div><div class="log-footer"><span id="logCounter">0 条日志</span><label><input type="checkbox" id="autoScroll" checked>自动滚动</label><span>日志中的初始密码与令牌会自动隐藏</span></div></section>
+    <footer class="page-footer"><span>BOT CONSOLE <b>v1.2</b><span class="footer-divider">/</span>你的私人机器人工作台</span><span>每 5 秒更新 · 数据来自服务器实时采集</span></footer>
+  </div>
+</main><div id="toast" class="toast hidden" role="status"></div>
+<dialog id="cloudDialog" class="cloud-dialog"><form id="cloudCredentialForm" autocomplete="off"><div class="dialog-heading"><h2>配置阿里云自动恢复</h2><button type="button" class="text-button" id="cloudDialogClose" aria-label="关闭配置">✕</button></div><p class="dialog-intro">仅控制服务器 YOUR_SERVER_IP，使用 RAM 用户的 AccessKey。凭证由当前 Windows 账号加密保存在本机，不会显示在页面或写入日志。</p><p class="dialog-notice">需要权限：查看实例信息，以及对目标实例执行普通重启。<a href="/cloud-setup" target="_blank" rel="noopener noreferrer">查看创建步骤和权限策略 ↗</a></p><label class="credential-label" for="cloudKeyId">AccessKey ID</label><input class="credential-input" id="cloudKeyId" name="cloudKeyId" autocomplete="off" spellcheck="false" required><label class="credential-label" for="cloudKeySecret">AccessKey Secret</label><input class="credential-input" type="password" id="cloudKeySecret" name="cloudKeySecret" autocomplete="off" required><div id="cloudConfigError" class="config-error hidden" role="alert"></div><div class="dialog-footer"><span>保存前只做权限预检，不会重启服务器。</span><button class="button exit-button" id="cloudSave" type="submit">保存并校验权限</button></div></form></dialog>
+</body></html>

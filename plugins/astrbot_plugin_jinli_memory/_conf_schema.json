@@ -1,0 +1,7 @@
+{
+  "enabled": {"description": "启用长期记忆", "type": "bool", "default": false},
+  "platform_id": {"description": "龙娘的小号连接", "type": "string", "default": "jinli-personal"},
+  "account_id": {"description": "龙娘的 QQ 号码", "type": "string", "default": "10000"},
+  "owner_id": {"description": "可以管理公开记忆的主人 QQ", "type": "string", "default": "10001"},
+  "provider_id": {"description": "用于整理记忆的聊天模型", "type": "string", "default": "deepseek-dragon/jinli-memory"}
+}

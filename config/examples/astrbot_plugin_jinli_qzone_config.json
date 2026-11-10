@@ -1,0 +1,8 @@
+{
+  "enabled": false,
+  "daily_time": "19:45",
+  "post_prompt": "用烬璃的口吻写一条简短日常，不读取或泄露私人聊天内容。",
+  "platform_id": "qq-snowluma",
+  "account_id": "10000",
+  "provider_id": "deepseek-dragon/deepseek-flash"
+}

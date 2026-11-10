@@ -1,0 +1,58 @@
+services:
+  astrbot:
+    image: m.daocloud.io/docker.io/soulter/astrbot:v4.29.3
+    container_name: astrbot
+    mem_limit: 400m
+    memswap_limit: 600m
+    cpus: 0.6
+    pids_limit: 256
+    restart: unless-stopped
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - "127.0.0.1:6185:6185"
+    volumes:
+      - ./astrbot-data:/AstrBot/data
+      - ./shared-files:/AstrBot/data/shared
+    networks: [qq-bot]
+    logging:
+      driver: json-file
+      options: {max-size: "10m", max-file: "3"}
+  snowluma:
+    image: m.daocloud.io/docker.io/motricseven7/snowluma:v2.2.1
+    container_name: snowluma
+    mem_limit: 1000m
+    memswap_limit: 1400m
+    cpus: 1.2
+    pids_limit: 512
+    restart: unless-stopped
+    shm_size: 1gb
+    ulimits:
+      nofile: {soft: 65536, hard: 1048576}
+    cap_add: [SYS_PTRACE]
+    security_opt: [seccomp=unconfined]
+    environment:
+      TZ: Asia/Shanghai
+      SNOWLUMA_WEBUI_HOST: 0.0.0.0
+      SNOWLUMA_WEBUI_PORT: 5099
+      SNOWLUMA_ONEBOT_HOST: 0.0.0.0
+      SNOWLUMA_HOOK_AUTOLOAD: "1"
+      SNOWLUMA_SCREEN: 1280x800x24
+      SNOWLUMA_QQ_FLAGS: "--disable-gpu --disable-software-rasterizer --disable-gpu-compositing"
+    ports:
+      - "127.0.0.1:5099:5099"
+      - "127.0.0.1:6081:6081"
+    volumes:
+      - ./snowluma-data:/app/data
+      - ./snowluma-config:/app/.config
+      - ./snowluma-share:/app/.local/share
+      - ./shared-files:/AstrBot/data/shared
+      - ./novnc-ui-fixed.js:/opt/noVNC/app/ui.js:ro
+      - ./snow-start-fixed.sh:/root/start.sh:ro
+    networks: [qq-bot]
+    logging:
+      driver: json-file
+      options: {max-size: "10m", max-file: "3"}
+networks:
+  qq-bot:
+    name: qq-bot

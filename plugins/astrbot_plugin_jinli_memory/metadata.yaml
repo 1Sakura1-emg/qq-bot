@@ -1,0 +1,8 @@
+name: astrbot_plugin_jinli_memory
+display_name: 烬璃长期记忆
+desc: 各群共享公开记忆，私聊按真实发言者隔离，记忆持久保存且可管理。
+version: v1.0.0
+author: local
+support_platforms:
+  - aiocqhttp
+astrbot_version: ">=4.29.3"

@@ -1,0 +1,8 @@
+name: astrbot_plugin_jinli_clean
+display_name: 烬璃空行清理
+desc: 发送前把回复里的连续换行压成单个，避免 QQ 里出现大间距。
+version: v1.0.0
+author: local
+support_platforms:
+  - aiocqhttp
+astrbot_version: ">=4.29.3"

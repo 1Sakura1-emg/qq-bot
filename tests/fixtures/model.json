@@ -1,0 +1,12 @@
+{
+  "provider": [
+    {
+      "id": "deepseek-dragon/deepseek-flash",
+      "modalities": [
+        "text",
+        "image",
+        "tool_use"
+      ]
+    }
+  ]
+}

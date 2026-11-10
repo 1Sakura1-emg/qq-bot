@@ -1,0 +1,7 @@
+{
+  "enabled": {
+    "description": "开启空行压缩",
+    "type": "bool",
+    "default": true
+  }
+}
